@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import axios from 'axios'
 
 interface IHero {
@@ -7,9 +8,9 @@ interface IHero {
   alterEgo: string
 }
 
-const SuperHeroesPage = () => {
+const SuperHeroesPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState<[IHero] | []>([])
+  const [data, setData] = useState<IHero[]>([])
 
   useEffect(() => {
     axios.get('http://localhost:4000/superheroes').then((res) => {
