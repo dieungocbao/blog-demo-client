@@ -1,19 +1,16 @@
 import React from 'react'
-import { useQuery } from 'react-query'
-import axios from 'axios'
-
-interface IHero {
-  id: number
-  name: string
-  alterEgo: string
-}
-
-const fetchSuperHeroes = (): Promise<IHero[]> => axios.get('http://localhost:4000/superheroes').then((response) => response.data)
+import { useSuperHeroesData } from '@Hooks/useSuperHeroesData'
 
 const RQSuperHeroesPage: React.FC = () => {
-  const { isLoading, data, isError, error } = useQuery<any[], Error>('super-heroes', fetchSuperHeroes, {
-    select: data => data!.map(hero => hero.name)
-  })
+  const onSuccess = (data) => {
+    console.log('Perform side effect after data fetching', data)
+  }
+
+  const onError = (error) => {
+    console.log('Perform side effect after encountering error', error)
+  }
+
+  const { isLoading, data, isError, error } = useSuperHeroesData(onSuccess, onError)
 
   if (isLoading) {
     return <h2>Loading...</h2>
