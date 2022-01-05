@@ -11,7 +11,9 @@ interface IHero {
 const fetchSuperHeroes = (): Promise<IHero[]> => axios.get('http://localhost:4000/superheroes').then((response) => response.data)
 
 const RQSuperHeroesPage: React.FC = () => {
-  const { isLoading, data, isError, error } = useQuery<IHero[], Error>('super-heroes', fetchSuperHeroes)
+  const { isLoading, data, isError, error } = useQuery<any[], Error>('super-heroes', fetchSuperHeroes, {
+    select: data => data!.map(hero => hero.name)
+  })
 
   if (isLoading) {
     return <h2>Loading...</h2>
@@ -24,8 +26,8 @@ const RQSuperHeroesPage: React.FC = () => {
   return (
     <>
       <h2>RQ Super Heroes Page</h2>
-      {data!.map((hero: IHero) => {
-        return <div key={hero.name}>{hero.name}</div>
+      {data!.map((heroName) => {
+        return <div key={heroName}>{heroName}</div>
       })}
     </>
   )
