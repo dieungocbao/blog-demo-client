@@ -15,5 +15,19 @@
             "name": "Wonder Woman",
             "alterEgo": "Princess Diana"
         }
+    ],
+    "friends": [
+        {
+            "id": 1,
+            "name": "Chandler Bing"
+        },
+        {
+            "id": 2,
+            "name": "Adam Levin"
+        },
+        {
+            "id": 3,
+            "name": "The Weekend"
+        }
     ]
 }
