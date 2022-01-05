@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSuperHeroesData } from '@Hooks/useSuperHeroesData'
+import { Link } from 'react-router-dom'
 
 const RQSuperHeroesPage: React.FC = () => {
   const onSuccess = (data) => {
@@ -23,8 +24,12 @@ const RQSuperHeroesPage: React.FC = () => {
   return (
     <>
       <h2>RQ Super Heroes Page</h2>
-      {data!.map((heroName) => {
-        return <div key={heroName}>{heroName}</div>
+      {data!.map((hero) => {
+        return (
+          <div key={hero.name}>
+            <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
+          </div>
+        )
       })}
     </>
   )
