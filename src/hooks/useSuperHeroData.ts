@@ -1,17 +1,25 @@
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import axios from 'axios'
 
-interface IHero {
+interface Hero {
   id: number
   name: string
   alterEgo: string
 }
 
-const fetchSuperHero = ({ queryKey }): Promise<IHero> => {
+type Heroes = ReadonlyArray<Hero>
+
+const fetchSuperHero = ({ queryKey }): Promise<Hero> => {
   const heroId = queryKey[1]
   return axios.get(`http://localhost:4000/superheroes/${heroId}`).then((response) => response.data)
 }
 
 export const useSuperHeroData = (heroId) => {
-  return useQuery<IHero, Error>(['super-hero', heroId], fetchSuperHero)
+  const queryClient = useQueryClient()
+  return useQuery<Hero, Error>(['super-hero', heroId], fetchSuperHero, {
+    initialData: () => {
+      const hero = queryClient.getQueryData<Heroes>('super-heroes')?.find((hero) => hero.id === parseInt(heroId))
+      return hero
+    }
+  })
 }
