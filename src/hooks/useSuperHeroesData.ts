@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query'
-import axios from 'axios'
+import { useQuery, useMutation } from 'react-query'
+import axios, { AxiosResponse } from 'axios'
 
 interface IHero {
   id: number
@@ -7,8 +7,17 @@ interface IHero {
   alterEgo: string
 }
 
+interface InputHero {
+  name: string
+  alterEgo: string
+}
+
 const fetchSuperHeroes = (): Promise<IHero[]> => {
   return axios.get('http://localhost:4000/superheroes').then((response) => response.data)
+}
+
+const addSuperHero = (hero: InputHero): Promise<AxiosResponse> => {
+  return axios.post('http://localhost:4000/superheroes', hero)
 }
 
 export const useSuperHeroesData = (onSuccess, onError) => {
@@ -20,4 +29,8 @@ export const useSuperHeroesData = (onSuccess, onError) => {
     //   return superHeroNames
     // }
   })
+}
+
+export const useAddSuperHero = () => {
+  return useMutation(addSuperHero)
 }
