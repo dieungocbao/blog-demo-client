@@ -16,7 +16,7 @@ const RQSuperHeroesPage: React.FC = () => {
 
   const { mutate: addHero } = useAddSuperHero()
 
-  const { isLoading, data, isError, error, refetch } = useSuperHeroesData(onSuccess, onError)
+  const { isLoading, data, isError, error } = useSuperHeroesData(onSuccess, onError)
 
   const handleAddHeroClick = () => {
     const hero = { name, alterEgo }
@@ -39,7 +39,6 @@ const RQSuperHeroesPage: React.FC = () => {
         <input type="text" value={alterEgo} onChange={(e) => setAlterEgo(e.target.value)} />
         <button onClick={handleAddHeroClick}>Add Hero</button>
       </div>
-      <button onClick={() => refetch()}>Fetch Heroes</button>
       {data!.map((hero) => {
         return (
           <div key={hero.name}>
