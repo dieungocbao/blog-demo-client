@@ -1,8 +1,11 @@
-module.exports = {
-  semi: false,
-  trailingComma: 'none',
-  singleQuote: true,
-  printWidth: 150,
-  tabWidth: 2,
-  endOfLine: 'auto'
-}
+module.exports =
+  {
+    semi: false,
+    trailingComma:
+      'all',
+    singleQuote: true,
+    printWidth: 120,
+    tabWidth: 2,
+    arrowParens:
+      'avoid'
+  }
