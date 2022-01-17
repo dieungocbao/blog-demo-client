@@ -8,16 +8,17 @@
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" \"./*.{js,ts}\"",
-    "server-json": "json-server --watch db.json --port 4000"
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" \"./*.{js,ts}\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "bootstrap": "5.1.3",
     "json-server": "^0.17.0",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.1.1",
     "react-dom": "^17.0.2",
     "react-query": "^3.34.7",
     "react-router-dom": "^6.2.1"
